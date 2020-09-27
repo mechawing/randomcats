@@ -8,14 +8,16 @@ import com.project.randomcats.ui.single_cat_picture_details.SingleCatPicture
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        btn.setOnClickListener {
+        rand_btn.setOnClickListener {
             val intent = Intent(this, SingleCatPicture::class.java)
             this.startActivity(intent)
         }
 
     }
+
 }

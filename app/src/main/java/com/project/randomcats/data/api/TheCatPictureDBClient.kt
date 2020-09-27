@@ -12,7 +12,6 @@ object TheCatPictureDBClient {
 
     fun getClient(): TheCatPictureDBInterface {
 
-
         val okHttpClient = OkHttpClient.Builder()
             .connectTimeout(60, TimeUnit.SECONDS)
             .build()

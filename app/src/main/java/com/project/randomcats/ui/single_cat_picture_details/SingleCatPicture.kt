@@ -1,5 +1,6 @@
 package com.project.randomcats.ui.single_cat_picture_details
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
@@ -13,7 +14,9 @@ import com.project.randomcats.data.api.TheCatPictureDBClient
 import com.project.randomcats.data.api.TheCatPictureDBInterface
 import com.project.randomcats.data.repository.NetworkState
 import com.project.randomcats.data.vo.CatPictureDetails
+import com.project.randomcats.ui.MainActivity
 import kotlinx.android.synthetic.main.activity_single_cat_picture.*
+import kotlin.system.exitProcess
 
 class SingleCatPicture : AppCompatActivity() {
 
@@ -24,6 +27,15 @@ class SingleCatPicture : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_single_cat_picture)
 
+        restart_btn.setOnClickListener {
+            val intent = Intent(this, MainActivity::class.java)
+            this.startActivity(intent)
+        }
+
+        exit_btn.setOnClickListener {
+            moveTaskToBack(true);
+            exitProcess(-1)
+        }
 
         val apiService : TheCatPictureDBInterface = TheCatPictureDBClient.getClient()
         catPictureRepository = CatPictureDetailsRepository(apiService)
@@ -48,7 +60,6 @@ class SingleCatPicture : AppCompatActivity() {
             .load(CatPicturePosterURL)
             .into(iv_cat_image);
     }
-
 
     private fun getViewModel(): SingleCatPictureViewModel {
         return ViewModelProviders.of(this, object : ViewModelProvider.Factory {

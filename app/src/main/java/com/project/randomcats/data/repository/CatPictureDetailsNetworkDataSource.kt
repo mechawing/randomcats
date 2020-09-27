@@ -24,7 +24,6 @@ class CatPictureDetailsNetworkDataSource (private val apiService : TheCatPicture
 
         _networkState.postValue(NetworkState.LOADING)
 
-
         try {
             compositeDisposable.add(
                 apiService.getCatPictureDetails()

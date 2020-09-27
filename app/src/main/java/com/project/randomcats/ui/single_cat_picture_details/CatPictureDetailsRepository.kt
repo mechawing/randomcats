@@ -24,6 +24,4 @@ class CatPictureDetailsRepository (private val apiService : TheCatPictureDBInter
         return catPictureDetailsNetworkDataSource.networkState
     }
 
-
-
 }

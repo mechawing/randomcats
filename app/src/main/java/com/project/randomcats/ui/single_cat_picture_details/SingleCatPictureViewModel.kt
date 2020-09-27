@@ -23,6 +23,4 @@ class SingleCatPictureViewModel(private val catPictureRepository: CatPictureDeta
         compositeDisposable.dispose()
     }
 
-
-
 }
