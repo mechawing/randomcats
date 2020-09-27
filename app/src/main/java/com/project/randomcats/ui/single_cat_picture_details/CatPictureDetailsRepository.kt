@@ -11,10 +11,10 @@ class CatPictureDetailsRepository (private val apiService : TheCatPictureDBInter
 
     lateinit var catPictureDetailsNetworkDataSource: CatPictureDetailsNetworkDataSource
 
-    fun fetchSingleCatPictureDetails (compositeDisposable: CompositeDisposable, catPictureId: String) : LiveData<CatPictureDetails> {
+    fun fetchSingleCatPictureDetails (compositeDisposable: CompositeDisposable) : LiveData<CatPictureDetails> {
 
         catPictureDetailsNetworkDataSource = CatPictureDetailsNetworkDataSource(apiService,compositeDisposable)
-        catPictureDetailsNetworkDataSource.fetchCatPictureDetails(catPictureId)
+        catPictureDetailsNetworkDataSource.fetchCatPictureDetails()
 
         return catPictureDetailsNetworkDataSource.downloadedCatPictureResponse
 

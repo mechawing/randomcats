@@ -20,14 +20,14 @@ class CatPictureDetailsNetworkDataSource (private val apiService : TheCatPicture
         get() = _downloadedCatPictureDetailsResponse
 
     @SuppressLint("LongLogTag")
-    fun fetchCatPictureDetails(catPictureId: String) {
+    fun fetchCatPictureDetails() {
 
         _networkState.postValue(NetworkState.LOADING)
 
 
         try {
             compositeDisposable.add(
-                apiService.getCatPictureDetails(catPictureId)
+                apiService.getCatPictureDetails()
                     .subscribeOn(Schedulers.io())
                     .subscribe(
                         {

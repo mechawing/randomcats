@@ -14,7 +14,6 @@ class MainActivity : AppCompatActivity() {
 
         btn.setOnClickListener {
             val intent = Intent(this, SingleCatPicture::class.java)
-            intent.putExtra("id","pBRl_KzA5" )
             this.startActivity(intent)
         }
 

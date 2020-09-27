@@ -20,17 +20,15 @@ class SingleCatPicture : AppCompatActivity() {
     private lateinit var viewModel: SingleCatPictureViewModel
     private lateinit var catPictureRepository: CatPictureDetailsRepository
 
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_single_cat_picture)
 
-        val catPictureId: String = intent.getStringExtra("id").toString()
 
         val apiService : TheCatPictureDBInterface = TheCatPictureDBClient.getClient()
         catPictureRepository = CatPictureDetailsRepository(apiService)
 
-        viewModel = getViewModel(catPictureId)
+        viewModel = getViewModel()
 
         viewModel.catPictureDetails.observe(this, Observer {
             bindUI(it)
@@ -45,18 +43,18 @@ class SingleCatPicture : AppCompatActivity() {
     }
 
     fun bindUI( it: CatPictureDetails){
-        val CatPicturePosterURL = it.url
+        val CatPicturePosterURL = it.file
         Glide.with(this)
             .load(CatPicturePosterURL)
             .into(iv_cat_image);
     }
 
 
-    private fun getViewModel(catPictureId: String): SingleCatPictureViewModel {
+    private fun getViewModel(): SingleCatPictureViewModel {
         return ViewModelProviders.of(this, object : ViewModelProvider.Factory {
             override fun <T : ViewModel?> create(modelClass: Class<T>): T {
                 @Suppress("UNCHECKED_CAST")
-                return SingleCatPictureViewModel(catPictureRepository,catPictureId) as T
+                return SingleCatPictureViewModel(catPictureRepository) as T
             }
         })[SingleCatPictureViewModel::class.java]
     }

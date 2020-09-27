@@ -6,12 +6,12 @@ import com.project.randomcats.data.repository.NetworkState
 import com.project.randomcats.data.vo.CatPictureDetails
 import io.reactivex.disposables.CompositeDisposable
 
-class SingleCatPictureViewModel(private val catPictureRepository: CatPictureDetailsRepository, catPictureId: String)  : ViewModel() {
+class SingleCatPictureViewModel(private val catPictureRepository: CatPictureDetailsRepository)  : ViewModel() {
 
     private val compositeDisposable = CompositeDisposable()
 
     val catPictureDetails : LiveData<CatPictureDetails> by lazy {
-        catPictureRepository.fetchSingleCatPictureDetails(compositeDisposable,catPictureId)
+        catPictureRepository.fetchSingleCatPictureDetails(compositeDisposable)
     }
 
     val networkState : LiveData<NetworkState> by lazy {
